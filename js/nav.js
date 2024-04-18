@@ -35,6 +35,7 @@ export function navLoginClick(evt) {
   hidePageComponents();
   $loginForm.classList.remove("d-none");
   $signupForm.classList.remove("d-none");
+  // $addStoryForm.classList.remove("d-none");
 }
 
 $navLogin.addEventListener("click", navLoginClick);
@@ -50,3 +51,7 @@ export function updateNavOnLogin() {
   $navUserProfile.classList.remove("d-none");
   $navUserProfile.querySelector("a").innerHTML = `${currentUser.username}`;
 }
+
+/** Make new story form appear on the DOM */
+
+// export function 

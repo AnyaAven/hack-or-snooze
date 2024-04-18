@@ -133,6 +133,35 @@
     <button type="submit" class="btn btn-primary">Create Account</button>
   </form>
 
+   <!-- New story form -->
+   <form id="NewStoryForm" class="d-none account-form mt-5">
+    <h4 class="mb-3">Submit New Story</h4>
+    <div class="mb-3">
+      <label for="NewStoryForm-author" class="form-label">Author</label>
+      <input
+      id="NewStoryForm-author"
+      autocapitalize="words"
+      placeholder="Author Name"
+      class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="NewStoryForm-title" class="form-label">Title</label>
+      <input
+          id="NewStoryForm-title"
+          autocapitalize="words"
+          placeholder="Story Title"
+          class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="NewStoryForm-url" class="form-label">URL</label>
+      <input
+          id="NewStoryForm-url"
+          placeholder="Story URL"
+          class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Story</button>
+  </form>
+
 </div>
 <!-- Library JS & our JS -->
 <script src="https://unpkg.com/bootstrap/dist/js/bootstrap.js"></script>
