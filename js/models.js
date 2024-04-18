@@ -1,5 +1,9 @@
+"use strict";
+
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
 
+//TODO: ask if line 5 was intended just for the constructor or if that can
+// serve as a docstring for the Story class
 class Story {
   /** Make instance of Story from data object about story:
    *   - {storyId, title, author, url, username, createdAt}
@@ -43,7 +47,7 @@ class Story {
 /******************************************************************************
  * List of Story instances: used by UI to show story lists in DOM.
  *****************************************************************************/
-
+//TODO: add docstring for StoryList
 class StoryList {
   constructor(stories) {
     this.stories = stories;
@@ -92,7 +96,7 @@ class StoryList {
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
  *****************************************************************************/
-
+//TODO: docstring
 class User {
   constructor(
     {
