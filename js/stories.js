@@ -73,3 +73,17 @@ export async function fetchAndShowStoriesOnStart() {
 
   putStoriesOnPage();
 }
+
+/******************************************************************************
+ * New story
+ *****************************************************************************/
+
+/** Get new story from form and add to story list */
+
+export function getNewStoryFromForm(){
+
+  //get data from form
+
+  //call add story
+}
+//TODO: where is export going?
