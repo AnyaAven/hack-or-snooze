@@ -108,14 +108,14 @@ class StoryList {
       body: userAndNewStory
     });
 
-    const postedStory = response.json();
+    const postedStory = await response.json();
+    const postedStoryDetails = postedStory.story;
 
-    const additionalStory = new Story(postedStory.stories);
+    const additionalStory = new Story(postedStoryDetails);
 
     this.stories.unshift(additionalStory);
 
     return additionalStory;
-
   }
 }
 
