@@ -89,7 +89,8 @@
       <input
           id="LoginForm-username"
           class="form-control"
-          autocomplete="current-username">
+          autocomplete="current-username"
+          required>
     </div>
     <div class="mb-3">
       <label for="LoginForm-password" class="form-label">Password</label>
@@ -97,7 +98,8 @@
           id="LoginForm-password"
           type="password"
           class="form-control"
-          autocomplete="current-password">
+          autocomplete="current-password"
+          required>
     </div>
     <div id="LoginForm-fail" class="d-none alert alert-danger">
       Login failed
@@ -110,14 +112,19 @@
     <h4 class="mb-3">Create Account</h4>
     <div class="mb-3">
       <label for="SignupForm-name" class="form-label">Name</label>
-      <input id="SignupForm-name" autocapitalize="words" class="form-control">
+      <input
+      id="SignupForm-name"
+      autocapitalize="words"
+      class="form-control"
+      required>
     </div>
     <div class="mb-3">
       <label for="SignupForm-username" class="form-label">Username</label>
       <input
           id="SignupForm-username"
           autocomplete="new-username"
-          class="form-control">
+          class="form-control"
+          required>
     </div>
     <div class="mb-3">
       <label for="SignupForm-password" class="form-label">Password</label>
@@ -125,7 +132,8 @@
           id="SignupForm-password"
           autocomplete="new-password"
           type="password"
-          class="form-control">
+          class="form-control"
+          required>
     </div>
     <div id="SignupForm-fail" class="d-none alert alert-danger">
       Signup failed
@@ -143,6 +151,7 @@
       autocapitalize="words"
       placeholder="Author Name"
       class="form-control">
+      required
     </div>
     <div class="mb-3">
       <label for="NewStoryForm-title" class="form-label">Title</label>
@@ -151,6 +160,7 @@
           autocapitalize="words"
           placeholder="Story Title"
           class="form-control">
+          required
     </div>
     <div class="mb-3">
       <label for="NewStoryForm-url" class="form-label">URL</label>
@@ -158,6 +168,7 @@
           id="NewStoryForm-url"
           placeholder="Story URL"
           class="form-control">
+          required
     </div>
     <button type="submit" class="btn btn-primary">Submit Story</button>
   </form>
