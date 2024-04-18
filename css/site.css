@@ -1,0 +1,17 @@
+/*!* General typography *!*/
+
+:root {
+  --bs-border-color: #e95420;
+}
+
+#StorySubmitForm input {
+  max-width: 30em;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

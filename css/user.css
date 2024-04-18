@@ -1,0 +1,12 @@
+/* Login and signup forms */
+
+#LoginForm,
+#SignupForm {
+  width: 20em;
+  margin: 0 auto;
+}
+
+#LoginForm input,
+#SignupForm input {
+  max-width: 18em;
+}

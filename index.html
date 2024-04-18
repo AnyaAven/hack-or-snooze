@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<!-- Hack or Snooze
+
+     This is the only HTML page; the applications manipulates this DOM
+     during use.
+
+     Primary authors:
+     - Michael Hueter: initial creation, 2018
+     - Elie Schoppik: refactoring using OO, 2019
+     - Joel Burton: refactored and componentized 2020
+     - Joel Burton: bootstrap 2023,
+     - Joel Burton: ESM 2024
+     - Joel Burton: TypeScript 2024
+     - You!
+  -->
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hack or Snooze</title>
+  <link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.css">
+  <link rel="stylesheet"
+        href="https://www.unpkg.com/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/user.css">
+</head>
+
+<body>
+
+<!-- top navigation bar -->
+<nav class="navbar navbar-expand-md navbar-dark bg-primary mb-5">
+  <div class="container">
+    <a class="navbar-brand" id="Nav-all" href="#">Hack Or Snooze</a>
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+      <ul class="navbar-nav me-2 my-lg-0">
+        <li id="Nav-login" class="nav-item">
+          <a class="nav-link" href="#">Log in/Sign up</a>
+        </li>
+        <li id="Nav-userProfile" class="nav-item d-none">
+          <a class="nav-link" href="#">Profile</a>
+        </li>
+        <li id="Nav-logout" class="nav-item d-none">
+          <a class="nav-link" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</nav>
+
+<div class="container mb-5">
+
+  <!-- area for stories (all stories, user stories, favorites) -->
+  <section class="Stories">
+
+    <!-- loading message (removed by JS after stories loaded) -->
+    <div id="LoadingMsg" class="mt-5 mb-5 text-center">
+      Loading&hellip;
+    </div>
+
+    <!-- List of all stories -->
+    <ol id="AllStoriesList" class="stories-list"></ol>
+
+  </section>
+
+  <!-- Login form -->
+  <form id="LoginForm" class="account-form d-none">
+    <h4 class="mb-3">Login</h4>
+    <div class="mb-3">
+      <label for="LoginForm-username" class="form-label">Username</label>
+      <input
+          id="LoginForm-username"
+          class="form-control"
+          autocomplete="current-username">
+    </div>
+    <div class="mb-3">
+      <label for="LoginForm-password" class="form-label">Password</label>
+      <input
+          id="LoginForm-password"
+          type="password"
+          class="form-control"
+          autocomplete="current-password">
+    </div>
+    <div id="LoginForm-fail" class="d-none alert alert-danger">
+      Login failed
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+
+  <!-- Signup form -->
+  <form id="SignupForm" class="d-none account-form mt-5">
+    <h4 class="mb-3">Create Account</h4>
+    <div class="mb-3">
+      <label for="SignupForm-name" class="form-label">Name</label>
+      <input id="SignupForm-name" autocapitalize="words" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="SignupForm-username" class="form-label">Username</label>
+      <input
+          id="SignupForm-username"
+          autocomplete="new-username"
+          class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="SignupForm-password" class="form-label">Password</label>
+      <input
+          id="SignupForm-password"
+          autocomplete="new-password"
+          type="password"
+          class="form-control">
+    </div>
+    <div id="SignupForm-fail" class="d-none alert alert-danger">
+      Signup failed
+    </div>
+    <button type="submit" class="btn btn-primary">Create Account</button>
+  </form>
+
+</div>
+<!-- Library JS & our JS -->
+<script src="https://unpkg.com/bootstrap/dist/js/bootstrap.js"></script>
+
+<script type="module">
+  import { start } from "./js/main.js";
+
+  start();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "hack-or-snooze",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest --run",
+    "test:cov": "vitest --coverage --coverage.exclude=\"**/*start*\" --coverage.exclude=\"**/common\"",
+    "test:debug": "vitest --run --inspectBrk --no-file-parallelism",
+    "test:ui": "vitest --ui"
+  },
+  "devDependencies": {
+    "msw": "^2.2.13",
+    "vitest": "^1.5.0"
+  }
+}
