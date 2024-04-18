@@ -1,6 +1,7 @@
 // This is the global list of all stories (an instance of StoryList)
 import {
   $allStoriesList,
+  $newStoryForm,
   $storiesLoadingMsg,
 } from "./dom";
 import { Story, StoryList } from "./models";
@@ -80,10 +81,20 @@ export async function fetchAndShowStoriesOnStart() {
 
 /** Get new story from form and add to story list */
 
-export function getNewStoryFromForm(){
+export function getNewStoryFromForm() {
+
+  //can use new FormData
+  const author = $newStoryForm.querySelector('#NewStoryForm-author');
+  const title = $newStoryForm.querySelector('#NewStoryForm-title');
+  const url = $newStoryForm.querySelector('#NewStoryForm-url');
+  const newStory = { author, title, url };
+
+  currStoryList.addStory(currentUser, newStory);
 
   //get data from form
 
   //call add story
 }
+
+$newStoryForm.addEventListener("submit", getNewStoryFromForm);
 //TODO: where is export going?
