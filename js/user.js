@@ -160,3 +160,15 @@ export async function updateUIOnUserLogin() {
 
   updateNavOnLogin();
 }
+
+export async function updateUIOnSubmittingStory() {
+  console.debug("updateUIOnSubmittingStory");
+
+  hidePageComponents();
+
+  // re-display stories (so that "favorite" stars can appear)
+  putStoriesOnPage();
+  $allStoriesList.classList.remove("d-none");
+
+  updateNavOnLogin();
+}
