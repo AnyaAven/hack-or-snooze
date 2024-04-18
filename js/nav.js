@@ -9,6 +9,8 @@ import {
   $navUserProfile,
   $loginForm,
   $signupForm,
+  $navSubmit,
+  $newStoryForm
 } from "./dom";
 import { hidePageComponents } from "./main";
 import {
@@ -35,7 +37,7 @@ export function navLoginClick(evt) {
   hidePageComponents();
   $loginForm.classList.remove("d-none");
   $signupForm.classList.remove("d-none");
-  // $addStoryForm.classList.remove("d-none");
+
 }
 
 $navLogin.addEventListener("click", navLoginClick);
@@ -47,11 +49,20 @@ export function updateNavOnLogin() {
 
   $navLogin.classList.add("d-none");
 
+  $navSubmit.classList.remove("d-none");
   $navLogOut.classList.remove("d-none");
   $navUserProfile.classList.remove("d-none");
   $navUserProfile.querySelector("a").innerHTML = `${currentUser.username}`;
 }
 
-/** Make new story form appear on the DOM */
+$navSubmit.addEventListener("click", navSubmitClick);
 
-// export function 
+/** Display new story form on click on "submit" in nav bar */
+
+export function navSubmitClick(evt){
+  console.debug("navSubmitClick", evt);
+  evt.preventDefault();
+  hidePageComponents();
+
+  $newStoryForm.classList.remove("d-none");
+}
