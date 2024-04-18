@@ -97,22 +97,25 @@ class StoryList {
   async addStory(user, newStory) {
     console.debug("addStory", { user, newStory });
 
-    //sent to api
-
-    //make json
+    const userAndNewStory =
+      JSON.stringify({ token: user.loginToken, story: newStory });
 
     const response = await fetch(`${BASE_URL}/stories`, {
-      token: user.loginToken,
-      story: newStory,
-
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: userAndNewStory
     });
-    const text = await response.
-    //make Story instance
-    const additionalStory = new Story()
 
-    //add to this.stories
+    const postedStory = response.json();
 
-    //return new Story instance
+    const additionalStory = new Story(postedStory.stories);
+
+    this.stories.unshift(additionalStory);
+
+    return additionalStory;
+
   }
 }
 
