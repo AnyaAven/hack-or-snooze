@@ -1,5 +1,3 @@
-"use strict";
-
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
 
 //TODO: ask if line 5 was intended just for the constructor or if that can
@@ -41,14 +39,23 @@ class Story {
 
   getHostName() {
     // FIXME: complete this function!
-    return "hostname.com";  }
+    return "hostname.com";
+  }
 }
 
 /******************************************************************************
  * List of Story instances: used by UI to show story lists in DOM.
  *****************************************************************************/
 //TODO: add docstring for StoryList
+/**
+ * Storylist represents a collection of all current Story instances
+ */
+
 class StoryList {
+
+  /**
+   * @param {array} stories is an Array of Story instances
+   */
   constructor(stories) {
     this.stories = stories;
   }
@@ -87,8 +94,25 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  async addStory(user, newStory) {
+    console.debug("addStory", { user, newStory });
+
+    //sent to api
+
+    //make json
+
+    const response = await fetch(`${BASE_URL}/stories`, {
+      token: user.loginToken,
+      story: newStory,
+
+    });
+    const text = await response.
+    //make Story instance
+    const additionalStory = new Story()
+
+    //add to this.stories
+
+    //return new Story instance
   }
 }
 
@@ -148,7 +172,7 @@ class User {
   }
 
   /** Login in user with API, make User instance & return it.
-  
+
 
      * - username: an existing user's username
      * - password: an existing user's password
