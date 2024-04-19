@@ -79,7 +79,10 @@ export async function fetchAndShowStoriesOnStart() {
  * New story
  *****************************************************************************/
 
-/** Get new story from form and add to story list */
+/** Get new story from form and add to story list
+ *
+ * returns story instance
+*/
 
 export async function getNewStoryFromForm() {
   console.debug("getNewStoryFromForm")
@@ -90,7 +93,32 @@ export async function getNewStoryFromForm() {
   const url = $newStoryForm.querySelector('#NewStoryForm-url').value;
   const newStory = { author, title, url };
 
-  await currStoryList.addStory(currentUser, newStory);
+  const newStoryInstance = await currStoryList.addStory(currentUser, newStory);
 
   console.log(currStoryList);
+  return newStoryInstance;
 }
+
+/**
+ * When a user submits a new story in the newStoryForm,
+ * get and generate the new story and prepend to dom,
+ * hide the newStoryForm,
+ * and display the allStoriesList
+ */
+export async function updateUIOnSubmittingStory(evt) {
+  evt.preventDefault();
+
+  const storyInstance = await getNewStoryFromForm();
+
+  $newStoryForm.classList.add("d-none");
+  $newStoryForm.reset();
+
+  const $story = generateStoryMarkup(storyInstance);
+  $allStoriesList.prepend($story);
+  $allStoriesList.removeChild($allStoriesList.lastElementChild);
+
+  $allStoriesList.classList.remove("d-none")
+}
+
+$newStoryForm.addEventListener("submit", updateUIOnSubmittingStory);
+
