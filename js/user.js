@@ -5,6 +5,7 @@ import {
   $loginForm,
   $navLogOut,
   $signupForm,
+  $newStoryForm
 } from "./dom";
 import { hidePageComponents } from "./main";
 import { putStoriesOnPage } from "./stories";
@@ -142,6 +143,21 @@ export function saveUserCredentialsInLocalStorage() {
  * General UI stuff about users & profiles
  */
 
+$newStoryForm.addEventListener("submit", handleSubmission);
+
+/**
+ * TODO:
+ */
+
+export async function handleSubmission(evt){
+
+  //TODO: clear out form values
+
+  $newStoryForm.classList.add("d-none");
+
+  await updateUIOnSubmittingStory();
+}
+
 /** When a user signs up or registers, we want to set up the UI for them:
  *
  * - show the stories list
@@ -161,8 +177,14 @@ export async function updateUIOnUserLogin() {
   updateNavOnLogin();
 }
 
+/**
+ * When a user submits a new story on submit button,
+ * go back to the main page and show the stories list
+ */
 export async function updateUIOnSubmittingStory() {
   console.debug("updateUIOnSubmittingStory");
+
+  //confirmation message to the user that it was submitted
 
   hidePageComponents();
 
@@ -172,3 +194,4 @@ export async function updateUIOnSubmittingStory() {
 
   updateNavOnLogin();
 }
+
