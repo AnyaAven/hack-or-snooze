@@ -94,7 +94,8 @@ export async function signup(evt) {
 
 $signupForm.addEventListener("submit", signup);
 
-/** Handle click of logout button
+/**
+ * Handle click of logout button
  *
  * Remove their credentials from localStorage and refresh page
  */
@@ -111,7 +112,8 @@ $navLogOut.addEventListener("click", logout);
  * Storing/recalling previously-logged-in-user with localStorage
  */
 
-/** If there are user credentials in local storage, use those to log in
+/**
+ * If there are user credentials in local storage, use those to log in
  * that user. This is meant to be called on page load, just once.
  */
 
@@ -125,7 +127,8 @@ export async function checkForRememberedUser() {
   currentUser = await User.loginViaStoredCredentials(token, username);
 }
 
-/** Sync current user information to localStorage.
+/**
+ * Sync current user information to localStorage.
  *
  * We store the username/token in localStorage so when the page is refreshed
  * (or the user revisits the site later), they will still be logged in.
@@ -151,19 +154,18 @@ $newStoryForm.addEventListener("submit", updateUIOnSubmittingStory);
  */
 
 export async function updateUIOnSubmittingStory(evt) {
-
   evt.preventDefault();
 
   await getNewStoryFromForm();
 
   $newStoryForm.classList.add("d-none");
-
   $newStoryForm.reset();
 
   putStoriesOnPage();
 }
 
-/** When a user signs up or registers, we want to set up the UI for them:
+/**
+ * When a user signs up or registers, we want to set up the UI for them:
  *
  * - show the stories list
  * - update nav bar options for logged-in user
