@@ -1,5 +1,4 @@
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
-const MAX_STORYLIST_LENGTH = 25;
 
 /** Model for a story
  * Properties:
@@ -255,8 +254,25 @@ class User {
    * Update API to reflect any new favorites added
    */
 
-  addFavorite(story) {
-    //use PATCH method update the user's favorites
+  async addFavorite(story) {
+    console.debug("addFavorite", { story });
+
+    const storyId = story.storyId;
+
+    const tokenJSON = JSON.stringify({ token: this.loginToken });
+
+    const response =
+      await fetch(`${BASE_URL}/users/${this.username}/favorites/${storyId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: tokenJSON
+      });
+
+    const messageAndUserData = await response.json();
+
+    this.favorites.push(story);
 
 
     //use static method of Story to find it's ID ?
@@ -269,6 +285,17 @@ class User {
 
     //fetch ??
   }
+
+  /**
+ * Pass a story instance to add to the current user's favorites.
+ * Update API to reflect any new favorites added
+ */
+
+  removeFavorite(story) {
+
+  }
 }
+
+
 
 export { Story, StoryList, User, BASE_URL };
