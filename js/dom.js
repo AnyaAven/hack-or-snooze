@@ -1,5 +1,7 @@
 // So we don't have to keep re-finding things on page, find DOM elements once:
 
+export const $storiesArea = document.querySelector(".Stories");
+
 export const $storiesLoadingMsg = document.querySelector("#LoadingMsg");
 export const $allStoriesList = document.querySelector("#AllStoriesList");
 export const $favoriteStories = document.querySelector("#FavoriteStories");
