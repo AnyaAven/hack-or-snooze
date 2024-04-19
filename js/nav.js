@@ -55,8 +55,6 @@ export function updateNavOnLogin() {
   $navUserProfile.querySelector("a").innerHTML = `${currentUser.username}`;
 }
 
-$navSubmit.addEventListener("click", navSubmitClick);
-
 /** Display new story form on click on "submit" in nav bar */
 
 export function navSubmitClick(evt){
@@ -66,3 +64,5 @@ export function navSubmitClick(evt){
 
   $newStoryForm.classList.remove("d-none");
 }
+
+$navSubmit.addEventListener("click", navSubmitClick);
