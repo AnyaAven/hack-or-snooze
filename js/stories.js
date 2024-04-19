@@ -49,7 +49,7 @@ export function generateStoryMarkup(story) {
 /** For in-memory list of stories, generates markup & put on page. */
 
 export function putStoriesOnPage() {
-  console.debug("putStoriesOnPage");
+  console.debug("putStoriesOnPage", {currentStories: currStoryList.stories});
 
   $allStoriesList.innerHTML = "";
 
@@ -81,7 +81,7 @@ export async function fetchAndShowStoriesOnStart() {
 
 /** Get new story from form and add to story list */
 
-export function getNewStoryFromForm() {
+export async function getNewStoryFromForm() {
   console.debug("getNewStoryFromForm")
 
   //can use new FormData
@@ -90,6 +90,7 @@ export function getNewStoryFromForm() {
   const url = $newStoryForm.querySelector('#NewStoryForm-url').value;
   const newStory = { author, title, url };
 
-  currStoryList.addStory(currentUser, newStory);
+  await currStoryList.addStory(currentUser, newStory);
+
   console.log(currStoryList);
 }
