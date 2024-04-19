@@ -1,4 +1,5 @@
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
+const MAX_STORYLIST_LENGTH = 25;
 
 /** Model for a story
  * Properties:
@@ -120,7 +121,12 @@ class StoryList {
 
     const additionalStory = new Story(postedStoryDetails);
 
+    //Add to the top of our list and remove the last item
     this.stories.unshift(additionalStory);
+
+    if(this.stories.length > MAX_STORYLIST_LENGTH){
+      this.stories.pop();
+    }
 
     user.ownStories.push(additionalStory);
 
@@ -133,7 +139,7 @@ class StoryList {
  * User: a user in the system (only used to represent the current user)
  *****************************************************************************/
 
-/** 
+/**
  * Model for a user
  * Properties:
  * - username: string
