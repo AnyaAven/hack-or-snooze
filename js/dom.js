@@ -2,6 +2,7 @@
 
 export const $storiesLoadingMsg = document.querySelector("#LoadingMsg");
 export const $allStoriesList = document.querySelector("#AllStoriesList");
+export const $favoriteStories = document.querySelector("#FavoriteStories");
 
 // selector that finds all three story lists
 export const $storiesLists = document.querySelector(".stories-list");
@@ -14,5 +15,6 @@ export const $navLogin = document.querySelector("#Nav-login");
 export const $navUserProfile = document.querySelector("#Nav-userProfile");
 export const $navLogOut = document.querySelector("#Nav-logout");
 export const $navSubmit = document.querySelector("#Nav-submit");
+export const $navFavorites = document.querySelector("#Nav-favorites");
 export const $navAllStories = document.querySelector("#Nav-all");
 
