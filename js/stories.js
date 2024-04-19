@@ -82,18 +82,15 @@ export async function fetchAndShowStoriesOnStart() {
 /** Get new story from form and add to story list */
 
 export function getNewStoryFromForm() {
+  console.debug("getNewStoryFromForm")
 
   //can use new FormData
-  const author = $newStoryForm.querySelector('#NewStoryForm-author');
-  const title = $newStoryForm.querySelector('#NewStoryForm-title');
-  const url = $newStoryForm.querySelector('#NewStoryForm-url');
+  const author = $newStoryForm.querySelector('#NewStoryForm-author').value;
+  const title = $newStoryForm.querySelector('#NewStoryForm-title').value;
+  const url = $newStoryForm.querySelector('#NewStoryForm-url').value;
   const newStory = { author, title, url };
 
   currStoryList.addStory(currentUser, newStory);
-
-  //get data from form
-
-  //call add story
 }
 
 $newStoryForm.addEventListener("submit", getNewStoryFromForm);
