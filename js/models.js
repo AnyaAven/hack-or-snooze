@@ -46,8 +46,11 @@ class Story {
    */
 
   getHostName() {
-    // FIXME: complete this function!
-    return "hostname.com";
+    console.debug("getHostName");
+
+    const storyUrl = new URL(this.url);
+
+    return storyUrl.hostname;
   }
 }
 
@@ -116,21 +119,16 @@ class StoryList {
       body: userAndNewStory
     });
 
-    const postedStory = await response.json();
-    const postedStoryDetails = postedStory.story;
+    const apiStoryData = await response.json();
+    const storyDataDetails = apiStoryData.story;
 
-    const additionalStory = new Story(postedStoryDetails);
+    const newStoryInstance = new Story(storyDataDetails);
 
     //Add to the top of our list and remove the last item
-    this.stories.unshift(additionalStory);
+    this.stories.unshift(newStoryInstance);
+    user.ownStories.push(newStoryInstance);
 
-    if(this.stories.length > MAX_STORYLIST_LENGTH){
-      this.stories.pop();
-    }
-
-    user.ownStories.push(additionalStory);
-
-    return additionalStory;
+    return newStoryInstance;
   }
 }
 
@@ -250,6 +248,26 @@ class User {
       },
       token,
     );
+  }
+
+  /**
+   * Pass a story instance to add to the current user's favorites.
+   * Update API to reflect any new favorites added
+   */
+
+  addFavorite(story) {
+    //use PATCH method update the user's favorites
+
+
+    //use static method of Story to find it's ID ?
+
+    //on click, li id = storyId
+
+    //currentStorylist loop through and find by story ID
+
+    //add to user.favorites
+
+    //fetch ??
   }
 }
 
