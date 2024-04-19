@@ -28,22 +28,19 @@ export function generateStoryMarkup(story) {
   const hostName = story.getHostName();
 
   // if a user is logged in, add in favorite/not-favorite star
-  const showStar = Boolean(currentUser);
+  const haveACurrentUser = Boolean(currentUser);
 
-  //no star if not logged in
-  const $unfilledStar = showStar
-  ? ""
-  : ""
-
-  const isUserFavorite =
-    currentUser.favorites.some(favoriteStory => favoriteStory.storyId === story.storyId);
+  let $star = "";
 
 
-  if(showStar){
+  if (haveACurrentUser) {
 
-    const star = isUserFavorite
-    ? `<i class="bi bi-star-fill"></i>`
-    : `<i class="Story-star bi bi-star"></i>`
+    const isUserFavorite = currentUser.favorites
+      .some(favoriteStory => favoriteStory.storyId === story.storyId);
+
+    $star = isUserFavorite
+      ? `<i class="Story-star bi bi-star-fill"></i>`
+      : `<i class="Story-star bi bi-star"></i>`
   }
   //not logged in put nothing
   //if users favorite put filled, else put unfilled
@@ -53,7 +50,7 @@ export function generateStoryMarkup(story) {
   $li.id = story.storyId;
   $li.classList.add("Story", "mt-2");
   $li.innerHTML = `
-      ${$unfilledStar}
+      ${$star}
       <a href="${story.url}" target="a_blank" class="Story-link">
         ${story.title}
       </a>
@@ -161,5 +158,19 @@ export function putFavoritesOnPage() {
 }
 
 //create a handle favorite button click
+async function handleClickOnStar(evt) {
+
+  if (!evt.target.matches(".Story-star")) return;
+
+  //find the storyId from parent li element
+  const storyElement = evt.target.closest(".Story");
+  const storyId = storyElement.id;
+  const storyInstance = await Story.getStory(storyId);
+  currentUser.addFavorite(storyInstance);
+
+  //change the star icon to be filled in for this story
+  //append single favorite to dom
+
+}
 
 //$storiesArea.addEventListener("click",);
