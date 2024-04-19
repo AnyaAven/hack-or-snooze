@@ -3,6 +3,7 @@ import {
   $allStoriesList,
   $newStoryForm,
   $storiesLoadingMsg,
+  $favoriteStories
 } from "./dom";
 import { Story, StoryList } from "./models";
 import { currentUser } from "./user";
@@ -126,4 +127,13 @@ $newStoryForm.addEventListener("submit", updateUIOnSubmittingStory);
  * Favorite stories
  *****************************************************************************/
 
-/**  */
+/** Display current user's favorites, generates markup & put on page. */
+
+export function putFavoritesOnPage() {
+  console.debug("putFavoritesOnPage");
+
+  for (const favoriteStory of currentUser.favorites) {
+    const $favoriteStory = generateStoryMarkup(favoriteStory);
+    $favoriteStories.append($favoriteStory);
+  }
+}
