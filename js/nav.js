@@ -10,7 +10,9 @@ import {
   $loginForm,
   $signupForm,
   $navSubmit,
-  $newStoryForm
+  $newStoryForm,
+  $favoriteStories,
+  $navFavorites
 } from "./dom";
 import { hidePageComponents } from "./main";
 import {
@@ -66,3 +68,15 @@ export function navSubmitClick(evt){
 }
 
 $navSubmit.addEventListener("click", navSubmitClick);
+
+/** Display the current user's favorite stories */
+
+export function navFavoritesClick(evt){
+  console.debug("navFavoritesClick", evt);
+  evt.preventDefault();
+  hidePageComponents();
+
+  $favoriteStories.classList.remove("d-none");
+}
+
+$navFavorites.addEventListener("click", navFavoritesClick);
