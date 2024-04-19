@@ -122,3 +122,8 @@ export async function updateUIOnSubmittingStory(evt) {
 
 $newStoryForm.addEventListener("submit", updateUIOnSubmittingStory);
 
+/******************************************************************************
+ * Favorite stories
+ *****************************************************************************/
+
+/**  */
