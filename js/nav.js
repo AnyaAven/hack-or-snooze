@@ -17,6 +17,7 @@ import {
 import { hidePageComponents } from "./main";
 import {
   putStoriesOnPage,
+  putFavoritesOnPage
 } from "./stories";
 import { currentUser } from "./user";
 
@@ -52,6 +53,7 @@ export function updateNavOnLogin() {
   $navLogin.classList.add("d-none");
 
   $navSubmit.classList.remove("d-none");
+  $navFavorites.classList.remove("d-none");
   $navLogOut.classList.remove("d-none");
   $navUserProfile.classList.remove("d-none");
   $navUserProfile.querySelector("a").innerHTML = `${currentUser.username}`;
@@ -69,13 +71,20 @@ export function navSubmitClick(evt){
 
 $navSubmit.addEventListener("click", navSubmitClick);
 
-/** Display the current user's favorite stories */
+/** Display the current user's favorite stories
+ *
+ * If clicked for the first time, get and generate favorites
+ * Otherwise, unhide favorite stories
+*/
 
 export function navFavoritesClick(evt){
   console.debug("navFavoritesClick", evt);
   evt.preventDefault();
   hidePageComponents();
 
+  if($favoriteStories.hasChildNodes() === false ){
+    putFavoritesOnPage();
+  }
   $favoriteStories.classList.remove("d-none");
 }
 
