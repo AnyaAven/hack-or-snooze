@@ -11,6 +11,10 @@ import { currentUser } from "./user";
 
 export let currStoryList;
 
+const FILLED_STAR_ICON = `<i class="Story-star bi bi-star-fill"></i>`;
+const UNFILLED_STAR_ICON = `<i class="Story-star bi bi-star"></i>`;
+
+
 /******************************************************************************
  * Generating HTML for a story
  *****************************************************************************/
@@ -39,8 +43,8 @@ export function generateStoryMarkup(story) {
       .some(favoriteStory => favoriteStory.storyId === story.storyId);
 
     $star = isUserFavorite
-      ? `<i class="Story-star bi bi-star-fill"></i>`
-      : `<i class="Story-star bi bi-star"></i>`
+      ?  FILLED_STAR_ICON
+      :  UNFILLED_STAR_ICON;
   }
   //not logged in put nothing
   //if users favorite put filled, else put unfilled
@@ -166,11 +170,31 @@ async function handleClickOnStar(evt) {
   const storyElement = evt.target.closest(".Story");
   const storyId = storyElement.id;
   const storyInstance = await Story.getStory(storyId);
-  currentUser.addFavorite(storyInstance);
 
-  //change the star icon to be filled in for this story
-  //append single favorite to dom
+  let $starIcon = evt.target;
 
+  //if filled in,
+  if($starIcon.outerHTML === UNFILLED_STAR_ICON){
+    await currentUser.addFavorite(storyInstance);
+
+    //change the star icon to be filled
+    $starIcon.outerHTML = FILLED_STAR_ICON;
+
+    //append single favorite to dom
+    $favoriteStories.append(generateStoryMarkup(storyInstance));
+  } else {
+    await currentUser.removeFavorite(storyInstance)
+
+    // change the star icon to be unfilled
+    $starIcon.outerHTML = UNFILLED_STAR_ICON;
+
+    // remove from favorites
+    $favoriteStories.querySelector(`#${storyId}`).remove();
+  }
+
+  //TODO:
+  //what if this was just a misclick?
+  //repopulate the favorite list every click instead
 }
 
-//$storiesArea.addEventListener("click",);
+$storiesArea.addEventListener("click", handleClickOnStar);
