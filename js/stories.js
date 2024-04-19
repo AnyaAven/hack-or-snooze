@@ -3,7 +3,8 @@ import {
   $allStoriesList,
   $newStoryForm,
   $storiesLoadingMsg,
-  $favoriteStories
+  $favoriteStories,
+  $storiesArea
 } from "./dom";
 import { Story, StoryList } from "./models";
 import { currentUser } from "./user";
@@ -26,12 +27,13 @@ export function generateStoryMarkup(story) {
 
   const hostName = story.getHostName();
 
-  // if a user is logged in, show favorite/not-favorite star
+  // if a user is logged in, add in favorite/not-favorite star
   const showStar = Boolean(currentUser);
   const $li = document.createElement("li");
   $li.id = story.storyId;
   $li.classList.add("Story", "mt-2");
   $li.innerHTML = `
+      <i class="Story-star bi bi-star"></i>
       <a href="${story.url}" target="a_blank" class="Story-link">
         ${story.title}
       </a>
@@ -50,7 +52,7 @@ export function generateStoryMarkup(story) {
 /** For in-memory list of stories, generates markup & put on page. */
 
 export function putStoriesOnPage() {
-  console.debug("putStoriesOnPage", {currentStories: currStoryList.stories});
+  console.debug("putStoriesOnPage", { currentStories: currStoryList.stories });
 
   $allStoriesList.innerHTML = "";
 
@@ -137,3 +139,7 @@ export function putFavoritesOnPage() {
     $favoriteStories.append($favoriteStory);
   }
 }
+
+//create a handle favorite button click
+
+$storiesArea.addEventListener("click",);
