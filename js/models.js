@@ -1,7 +1,14 @@
 const BASE_URL = "https://hack-or-snooze-v3.herokuapp.com";
 
-//TODO: ask if line 5 was intended just for the constructor or if that can
-// serve as a docstring for the Story class
+/** Model for a story
+ * Properties:
+ * - storyId: string
+ * - title: string
+ * - author: string
+ * - url: string
+ * - username: string
+ * - createdAt: string
+ */
 class Story {
   /** Make instance of Story from data object about story:
    *   - {storyId, title, author, url, username, createdAt}
@@ -46,16 +53,15 @@ class Story {
 /******************************************************************************
  * List of Story instances: used by UI to show story lists in DOM.
  *****************************************************************************/
-//TODO: add docstring for StoryList
+
 /**
  * Storylist represents a collection of all current Story instances
+ * Properties:
+ * - stories: array of story instances
  */
 
 class StoryList {
 
-  /**
-   * @param {array} stories is an Array of Story instances
-   */
   constructor(stories) {
     this.stories = stories;
   }
@@ -85,8 +91,9 @@ class StoryList {
     return new StoryList(stories);
   }
 
-  /** Send story data to API, make a Story instance, and add it as the first
-   * item to this StoryList.
+  /**
+   * Send story data to API, make a Story instance, update the current user's
+   * stories, and add the story as the first item to this StoryList.
    *
    * - user - the current instance of User who will post the story
    * - obj of {title, author, url}
@@ -115,6 +122,8 @@ class StoryList {
 
     this.stories.unshift(additionalStory);
 
+    user.ownStories.push(additionalStory);
+
     return additionalStory;
   }
 }
@@ -123,7 +132,16 @@ class StoryList {
 /******************************************************************************
  * User: a user in the system (only used to represent the current user)
  *****************************************************************************/
-//TODO: docstring
+
+/** 
+ * Model for a user
+ * Properties:
+ * - username: string
+ * - name: string
+ * - createdAt: string
+ * - favorites: array of story instances
+ * - ownStories: array of story instances
+ */
 class User {
   constructor(
     {
@@ -146,7 +164,8 @@ class User {
     this.loginToken = token;
   }
 
-  /** Register new user in API, make User instance & return it.
+  /**
+   * Register new user in API, make User instance & return it.
    *
    * - username: a new username
    * - password: a new password
@@ -174,12 +193,11 @@ class User {
     );
   }
 
-  /** Login in user with API, make User instance & return it.
-
-
-     * - username: an existing user's username
-     * - password: an existing user's password
-     */
+  /**
+   * Login in user with API, make User instance & return it.
+   * - username: an existing user's username
+   * - password: an existing user's password
+   */
 
   static async login(username, password) {
     const body = JSON.stringify({ user: { username, password } });
@@ -200,9 +218,10 @@ class User {
     );
   }
 
-  /** When we already have credentials (token & username) for a user,
-   *   we can log them in automatically. This function does that.
-   *   Returns new user (or null if login failed).
+  /**
+   * When we already have credentials (token & username) for a user,
+   * we can log them in automatically. This function does that.
+   * Returns new user (or null if login failed).
    */
 
   static async loginViaStoredCredentials(token, username) {
