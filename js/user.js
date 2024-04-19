@@ -8,7 +8,7 @@ import {
   $newStoryForm
 } from "./dom";
 import { hidePageComponents } from "./main";
-import { putStoriesOnPage } from "./stories";
+import { putStoriesOnPage, getNewStoryFromForm } from "./stories";
 import { updateNavOnLogin } from "./nav";
 
 export let currentUser;
@@ -143,19 +143,25 @@ export function saveUserCredentialsInLocalStorage() {
  * General UI stuff about users & profiles
  */
 
-$newStoryForm.addEventListener("submit", handleSubmission);
+$newStoryForm.addEventListener("submit", updateUIOnSubmittingStory);
 
 /**
- * TODO:
+ * When a user submits a new story in the newStoryForm,
+ * hide the newStoryForm and display the allStoriesList
  */
 
-export async function handleSubmission(evt){
+export async function updateUIOnSubmittingStory(evt) {
 
-  //TODO: clear out form values
+  evt.preventDefault();
+
+  getNewStoryFromForm();
 
   $newStoryForm.classList.add("d-none");
 
-  await updateUIOnSubmittingStory();
+  $newStoryForm.reset();
+
+  putStoriesOnPage();
+
 }
 
 /** When a user signs up or registers, we want to set up the UI for them:
@@ -176,22 +182,3 @@ export async function updateUIOnUserLogin() {
 
   updateNavOnLogin();
 }
-
-/**
- * When a user submits a new story on submit button,
- * go back to the main page and show the stories list
- */
-export async function updateUIOnSubmittingStory() {
-  console.debug("updateUIOnSubmittingStory");
-
-  //confirmation message to the user that it was submitted
-
-  hidePageComponents();
-
-  // re-display stories (so that "favorite" stars can appear)
-  putStoriesOnPage();
-  $allStoriesList.classList.remove("d-none");
-
-  updateNavOnLogin();
-}
-
