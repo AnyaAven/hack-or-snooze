@@ -2,6 +2,7 @@ import {
   $loginForm,
   $signupForm,
   $allStoriesList,
+  $newStoryForm
 } from "./dom";
 
 import { fetchAndShowStoriesOnStart } from "./stories";
@@ -21,6 +22,7 @@ export function hidePageComponents() {
     $allStoriesList,
     $loginForm,
     $signupForm,
+    $newStoryForm
   ];
   for (const $c of components) $c.classList.add("d-none");
 }
