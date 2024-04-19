@@ -29,11 +29,18 @@ export function generateStoryMarkup(story) {
 
   // if a user is logged in, add in favorite/not-favorite star
   const showStar = Boolean(currentUser);
+
+  //no star if not logged in
+  const $unfilledStar = showStar
+  ? `<i class="Story-star bi bi-star"></i>`
+  : ""
+
+
   const $li = document.createElement("li");
   $li.id = story.storyId;
   $li.classList.add("Story", "mt-2");
   $li.innerHTML = `
-      <i class="Story-star bi bi-star"></i>
+      ${$unfilledStar}
       <a href="${story.url}" target="a_blank" class="Story-link">
         ${story.title}
       </a>
@@ -142,4 +149,4 @@ export function putFavoritesOnPage() {
 
 //create a handle favorite button click
 
-$storiesArea.addEventListener("click",);
+//$storiesArea.addEventListener("click",);
