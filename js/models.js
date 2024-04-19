@@ -273,26 +273,37 @@ class User {
     const messageAndUserData = await response.json();
 
     this.favorites.push(story);
-
-
-    //use static method of Story to find it's ID ?
-
-    //on click, li id = storyId
-
-    //currentStorylist loop through and find by story ID
-
-    //add to user.favorites
-
-    //fetch ??
   }
 
   /**
- * Pass a story instance to add to the current user's favorites.
- * Update API to reflect any new favorites added
+ * Pass a story instance to remove from the current user's favorites.
+ * Update API to reflect that the story is removed from the
+ * current user's favorites
  */
 
-  removeFavorite(story) {
+  async removeFavorite(story) {
+    console.debug("removeFavorite", { story });
 
+    const favoriteStoryId = story.storyId;
+
+    const tokenJSON = JSON.stringify({ token: this.loginToken });
+
+    const response =
+      await fetch(`${BASE_URL}/users/${this.username}/favorites/${favoriteStoryId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: tokenJSON
+      });
+
+    const messageAndUserData = await response.json();
+
+    //remove from user's favorites
+    const favoriteStoryIndx =
+      this.favorites.findIndex(story => story.storyId === favoriteStoryId);
+
+    this.favorites.splice(favoriteStoryIndx, 1);
   }
 }
 
