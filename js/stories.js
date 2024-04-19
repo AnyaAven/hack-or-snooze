@@ -91,7 +91,5 @@ export function getNewStoryFromForm() {
   const newStory = { author, title, url };
 
   currStoryList.addStory(currentUser, newStory);
+  console.log(currStoryList);
 }
-
-$newStoryForm.addEventListener("submit", getNewStoryFromForm);
-//TODO: where is export going?
