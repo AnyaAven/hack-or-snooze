@@ -5,7 +5,6 @@ import {
   $loginForm,
   $navLogOut,
   $signupForm,
-  $newStoryForm
 } from "./dom";
 import { hidePageComponents } from "./main";
 import { putStoriesOnPage, getNewStoryFromForm } from "./stories";
@@ -145,24 +144,6 @@ export function saveUserCredentialsInLocalStorage() {
 /******************************************************************************
  * General UI stuff about users & profiles
  */
-
-$newStoryForm.addEventListener("submit", updateUIOnSubmittingStory);
-
-/**
- * When a user submits a new story in the newStoryForm,
- * hide the newStoryForm and display the allStoriesList
- */
-
-export async function updateUIOnSubmittingStory(evt) {
-  evt.preventDefault();
-
-  await getNewStoryFromForm();
-
-  $newStoryForm.classList.add("d-none");
-  $newStoryForm.reset();
-
-  putStoriesOnPage();
-}
 
 /**
  * When a user signs up or registers, we want to set up the UI for them:
