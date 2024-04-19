@@ -154,14 +154,13 @@ export async function updateUIOnSubmittingStory(evt) {
 
   evt.preventDefault();
 
-  getNewStoryFromForm();
+  await getNewStoryFromForm();
 
   $newStoryForm.classList.add("d-none");
 
   $newStoryForm.reset();
 
   putStoriesOnPage();
-
 }
 
 /** When a user signs up or registers, we want to set up the UI for them:
