@@ -32,8 +32,21 @@ export function generateStoryMarkup(story) {
 
   //no star if not logged in
   const $unfilledStar = showStar
-  ? `<i class="Story-star bi bi-star"></i>`
+  ? ""
   : ""
+
+  const isUserFavorite =
+    currentUser.favorites.some(favoriteStory => favoriteStory.storyId === story.storyId);
+
+
+  if(showStar){
+
+    const star = isUserFavorite
+    ? `<i class="bi bi-star-fill"></i>`
+    : `<i class="Story-star bi bi-star"></i>`
+  }
+  //not logged in put nothing
+  //if users favorite put filled, else put unfilled
 
 
   const $li = document.createElement("li");
