@@ -51,6 +51,8 @@ export function generateStoryMarkup(story) {
 
 
   const $li = document.createElement("li");
+  //TODO: selectors cannot have numbers
+  //TODO: can use data attributes for the storyId
   $li.id = story.storyId;
   $li.classList.add("Story", "mt-2");
   $li.innerHTML = `
@@ -173,8 +175,11 @@ async function handleClickOnStar(evt) {
 
   let $starIcon = evt.target;
 
+  //TODO: add an isFavorite function in the models.js User class
   //if filled in,
+  console.log({starIcon: $starIcon.outerHTML});
   if($starIcon.outerHTML === UNFILLED_STAR_ICON){
+    //TODO: add a console.log
     await currentUser.addFavorite(storyInstance);
 
     //change the star icon to be filled
@@ -183,7 +188,7 @@ async function handleClickOnStar(evt) {
     //append single favorite to dom
     $favoriteStories.append(generateStoryMarkup(storyInstance));
   } else {
-    await currentUser.removeFavorite(storyInstance)
+    await currentUser.removeFavorite(storyInstance);
 
     // change the star icon to be unfilled
     $starIcon.outerHTML = UNFILLED_STAR_ICON;

@@ -270,8 +270,8 @@ class User {
         body: tokenJSON
       });
 
-    const messageAndUserData = await response.json();
-
+    await response.json();
+    //can you use to check if error from server ----> if(!response.ok)
     this.favorites.push(story);
   }
 
@@ -305,6 +305,8 @@ class User {
 
     this.favorites.splice(favoriteStoryIndx, 1);
   }
+
+
 }
 
 
